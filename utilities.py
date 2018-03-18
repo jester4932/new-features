@@ -14,7 +14,7 @@ def databse_build():
     sqlconn.commit()
 
 
-# This only for this app. this so the database_build function doesn't continue to add 3 entries every time the app is restarted. it will delete all entries and reset back to the original 3 entries
+# This only for this app. this so the database_build function doesn't continue to add 3 entries every time the app is restarted. it will delete all entries and reset back to the original 3 entries above
 def database_reset():
     sqlconn.query(Features).delete()
     databse_build()

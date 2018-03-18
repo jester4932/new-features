@@ -6,12 +6,16 @@ import os
 
 HOSTname = socket.gethostname()
 HOSTdir = os.getcwd()
-
+STATICdir = os.path.join(HOSTdir, 'static')
 
 WEBhost = "0.0.0.0"
 WEBsrvr = 'cherrypy'
-WEBport = '8090'
-HOSTurl = 'http://localhost:8090'
+if HOSTdir == '/var/www':
+    WEBport = '80'
+    HOSTurl = 'NewFeatures'
+else:
+    WEBport = '8090'
+    HOSTurl = 'http://localhost:8090'
 
 
 @get('/')
