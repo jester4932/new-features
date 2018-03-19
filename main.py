@@ -23,9 +23,10 @@ def home():
     sqlconn = database.db_connection()
     Features = database.Features
     data = []
+    home_template = '/templates/homepage.tpl'
     for row in sqlconn.query(Features).order_by(Features.id):
         data.append(row)
-    return '<h1>%s</h1>'%str(data)
+    return template()
 
 # Web Server Start and Database initial build
 utilities.database_reset()
