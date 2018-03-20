@@ -1,5 +1,4 @@
-from bottle import template, run, get, post
-import database
+from bottle import template, run, get, post, request, redirect
 import utilities
 import socket
 import os
@@ -20,13 +19,18 @@ else:
 
 @get('/')
 def home():
-    sqlconn = database.db_connection()
-    Features = database.Features
-    data = []
-    home_template = '/templates/homepage.tpl'
-    for row in sqlconn.query(Features).order_by(Features.id):
-        data.append(row)
-    return template()
+    home_template = 'templates/homepage.tpl'
+    data, chart = utilities.db_call()
+    return template(home_template, data=data, chart=chart)
+
+
+@post('/submit')
+def submit():
+    a = request.forms.allitems()
+    rows = dict(a)
+    utilities.db_insert(rows)
+    redirect('/')
+
 
 # Web Server Start and Database initial build
 utilities.database_reset()

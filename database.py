@@ -2,10 +2,12 @@ from sqlalchemy import create_engine, Column, Integer, VARCHAR, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///newfeatures.db',  echo=True)
+
+
+engine = create_engine('sqlite:///newfeatures.db')
 Base = declarative_base()
 
-
+# Builds the table
 class Features(Base):
     __tablename__= 'features'
 
@@ -18,9 +20,11 @@ class Features(Base):
     productarea = Column(VARCHAR(20))
 
     def __repr__(self):
-        return "{%s:{ title : '%s', description : '%s', client : '%s', priority : '%s', targetdate : '%s', productarea : '%s'}" % (
+        return "%s,%s,%s,%s,%s,%s,%s" % (
             self.id, self.title, self.description, self.client, self.priority, self.targetdate, self.productarea)
 
+
+# Creates a connection to the database
 def db_connection():
     try:
         x = sessionmaker(bind=engine)
