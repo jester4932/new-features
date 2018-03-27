@@ -6,11 +6,11 @@ from database import Features,db_connection
 # Builds the first three feature suggestions
 def databse_build(sqlconn):
     features = [Features(title='First Feature', description='Description of first feature', client='Client A',
-                         priority=1, targetdate='2018-04-23', productarea='Policies'),
+                         priority=1, targetdate='04/23/2018', productarea='Policies'),
                 Features(title='Second Feature', description='Description of second feature', client='Client C',
-                         priority=2, targetdate='2018-05-01', productarea='Claims'),
+                         priority=2, targetdate='05/01/2018', productarea='Claims'),
                 Features(title='Third Feature', description='Description of third feature', client='Client B',
-                         priority=3, targetdate='2018-05-08', productarea='Billing')]
+                         priority=3, targetdate='05/08/2018', productarea='Billing')]
     sqlconn.add_all(features)
     sqlconn.commit()
 
